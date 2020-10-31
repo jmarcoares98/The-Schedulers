@@ -10,7 +10,7 @@ public class Main {
 		int i = 1;
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~Your Projects~~~~~~~~~~~~~~~~~~~~~");
 		for (Project p : PL){
-			System.out.println("("+i+")"+" "+p.getName()+": "+p.getDescription());
+			System.out.println(p.formatProject(i));
 			i++;
 		}
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -19,7 +19,7 @@ public class Main {
 		int i = 1;
 		System.out.println("~~~~~~~~~~~~~~~~~~~~Project Members~~~~~~~~~~~~~~~~~~~~");
 		for (Member m : P.members){
-			System.out.println("("+i+")"+" "+m.getName()+": "+m.getEmail());
+			System.out.println(m.formatMember(i));
 			i++;
 		}
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -48,7 +48,7 @@ public class Main {
 						System.out.println("~~~~~~~~~~~~~~~~~~~~~~Past Events~~~~~~~~~~~~~~~~~~~~~~");
 						past=0;
 					}
-					System.out.println(e.getEndDate()+" "+e.getProjectname()+": "+e.getName()+"- "+e.getMemberNames());
+					System.out.println(e.formatEvents());
 				}
 			}
 		}
@@ -72,7 +72,7 @@ public class Main {
 			else {
 				orderedEvents.sort((d1,d2)->d1.getEndDate().compareTo(d2.getEndDate()));
 				for (Event e : orderedEvents){
-					System.out.println("("+i+")"+e.getEndDate()+" "+e.getProjectname()+": "+e.getName()+"- "+e.getMemberNames());
+					System.out.println("("+i+")"+" "+e.formatEvents());
 					i++;
 				}
 			}
@@ -183,7 +183,7 @@ public class Main {
 					System.out.println("Assigned:     "+eventlist.get(i-1).getMemberNames());
 					System.out.println("Start date:   "+eventlist.get(i-1).getStartDate());
 					System.out.println("End date:     "+eventlist.get(i-1).getEndDate());
-					j = eventlist.get(i-1).getStartDate().compareTo(curDate);
+					//j = eventlist.get(i-1).getStartDate().compareTo(curDate);
 					//if (j >=0) {
 					//	System.out.println("Days passed:  "+j);
 					//}

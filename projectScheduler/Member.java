@@ -31,4 +31,13 @@ public class Member {
     { 
         this.email = Iemail; 
     } 
+	
+	public String formatMember(int i) 
+    { 
+        String out = "";
+		out = "("+i+")"+" "+name+": "+email;
+		return out; 
+    } 
+	
+	
 }

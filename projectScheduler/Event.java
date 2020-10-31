@@ -98,4 +98,15 @@ public class Event {
 		return complete; 
     } 
 	
+	public String formatEvents() 
+    { 
+        String out = "";
+		out = endDate+" "+projectname+": "+name+"- "+getMemberNames();
+		return out; 
+    } 
+	
+	
+	
+	
+	
 }

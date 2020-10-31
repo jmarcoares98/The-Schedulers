@@ -46,4 +46,11 @@ public class Project {
         this.members.add(Imember); 
     }
 	
+	
+	public String formatProject(int i) 
+    { 
+        String out = "";
+		out = "("+i+")"+" "+name+": "+description;
+		return out; 
+    } 
 }
