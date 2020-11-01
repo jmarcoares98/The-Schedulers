@@ -3,7 +3,7 @@ package projectScheduler;
 import java.util.Scanner;  // Import the Scanner class
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.*;
+//import java.util.*;
 public class Main {
 
 	public static void printProjects(ArrayList<Project> PL) {//Prints all projects with numbers in front
@@ -79,7 +79,7 @@ public class Main {
 		}
 	}
 	public static ArrayList<Event> orderEvents(ArrayList<Project> PL) {//Orders Events by end date
-		int i = 1;
+		//int i = 1;
 		ArrayList<Event> orderedEvents = new ArrayList<Event>();
 		
 		if(PL.isEmpty()) {
@@ -110,7 +110,7 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		int go = 1;
-		int go2 = 1;
+		//int go2 = 1;
 		ArrayList<Project> projectL = new ArrayList<Project>();
 		ArrayList<Event> eventlist= new ArrayList<Event>();
 		int i;
@@ -123,9 +123,9 @@ public class Main {
 		String inp6;
 		String[] strL;
 		String[] strL2;
-		LocalDate date1;
-		LocalDate date2;
-		LocalDate curDate = LocalDate.now();
+		//LocalDate date1;
+		//LocalDate date2;
+		//LocalDate curDate = LocalDate.now();
 		
 		
 		while (go == 1){
