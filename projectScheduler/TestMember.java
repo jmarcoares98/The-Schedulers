@@ -15,13 +15,12 @@ public class Testmember {
 	
 	@Test
 	public void testformatMember() {
-		//doReturn("Daniel").when(spyMember).getName();
-		//doReturn("DLH@gmail.com").when(spyMember).getEmail();
-		//Member M = new Member("Daniel","DLH@gmail.com");
-		//assertEquals(5,5);
+
 		assertEquals("(5) bob: 123@hotmail",spyMember.formatMember(5));
-		//assertEquals("(5) Daniel: DLH@gmail.com",M.formatMember(5));
-		//fail("Not yet implemented");
+		spyMember.setName("Daniel");
+		spyMember.setEmail("DLH@gmail.com");
+		assertEquals("(5) Daniel: DLH@gmail.com",spyMember.formatMember(5));
+		
 	}
 
 }
