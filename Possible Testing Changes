@@ -84,3 +84,26 @@ FOR TestProject.java:
 	}
 	
 
+	// Have to make sure that the ArrayList is not causing errors, thus mock ArrayList<Member> 
+	@Test
+	void testGetMemberName() {
+		//Set up Actual Event Class--Giving the 'members' attribute a member 
+		Event se = spy(new Event("evname", "stdate", "endate", "descr", "projname")); 
+		se.addMember(new Member("matt","abc@gmail.com"));
+		
+		// Mocking the array list for iteration -- giving the mocked list a member 
+		Member m1 = new Member("matt","abc@gmail.com");
+		//Member m2 = new Member("bob","123@gmail.com");
+		ArrayList<Member> spyMem = spy(new ArrayList<Member>());
+		spyMem.add(m1);
+		//spyMem.add(m2); 
+		
+		// Using mocked iterator... heres where don't know if works
+		Iterator<Member> iterator = mock(Iterator.class);
+		when(spyMem.iterator()).thenReturn(iterator); 
+		when(iterator.hasNext()).thenReturn(true,false);
+		when(iterator.next()).thenReturn("matt");
+		assertEquals("matt",se.getMemberNames());
+		
+	}
+
