@@ -14,6 +14,40 @@ public class Testmember {
 	
 	
 	@Test
+	public void testMember() {
+		Member sm = spy(new Member("bob","123@gmail.com")); 
+		String expName = "bob";
+		String expEmail = "123@gmail.com";
+		assertEquals(expName,sm.getName());
+		assertEquals(expEmail,sm.getEmail());
+	}
+	
+	@Test
+	public void test_formatMember() {
+		Member sm = spy(new Member("bob", "123@gmail.com")); 
+		int i = 1;
+		doReturn("bob").when(sm).getName(); 
+		doReturn("123@gmail.com").when(sm).getEmail();
+		assertEquals("(1) bob: 123@gmail.com",sm.formatMember(i)); 
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Test
 	public void testformatMember() {
 
 		assertEquals("(5) bob: 123@hotmail",spyMember.formatMember(5));

@@ -50,7 +50,7 @@ public class Project {
 	public String formatProject(int i) 
     { 
         String out = "";
-		out = "("+i+")"+" "+name+": "+description;
+        out = "("+i+")"+" "+this.getName()+": "+this.getDescription();
 		return out; 
     } 
 }

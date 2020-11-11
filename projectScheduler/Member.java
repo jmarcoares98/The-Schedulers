@@ -35,7 +35,7 @@ public class Member {
 	public String formatMember(int i) 
     { 
         String out = "";
-		out = "("+i+")"+" "+name+": "+email;
+        out = "("+i+")"+" "+this.getName()+": "+this.getEmail();
 		return out; 
     } 
 	

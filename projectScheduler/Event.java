@@ -102,7 +102,7 @@ public class Event {
 	public String formatEvents() 
     { 
         String out = "";
-		out = endDate+" "+projectname+": "+name+"- "+getMemberNames();
+        out = this.getEndDate()+" "+ this.getProjectname()+": "+ this.getName()+"- "+this.getMemberNames();
 		return out; 
     } 
 	

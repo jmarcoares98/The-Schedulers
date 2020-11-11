@@ -49,6 +49,28 @@ public class Testevent {
 
  
 
+	    // Purpose is to make sure this method working properly, thus use mocking for get MemberNames
+	   	@Test
+	   	public void test_FormatEvents() {
+	   		Event se = spy(new Event("evname", "2020-10-30", "2020-10-31", "descr", "projname")); 
+	   		doReturn(LocalDate.parse("2020-10-31")).when(se).getEndDate();
+	   		doReturn("projname").when(se).getProjectname();
+	   		doReturn("evname").when(se).getName();
+	   		doReturn("membernames").when(se).getMemberNames();
+	   		assertEquals("2020-10-31 projname: evname- membernames",se.formatEvents()); 
+	   	}
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
        @Test
 
        public void testFormatEvents() {
