@@ -1,0 +1,86 @@
+In order to be consistent with tests, code base needs the following methods changed: 
+(1) From Project.java: 
+	public String formatProject(int i) 
+  { 
+      String out = "";
+		out = "("+i+")"+" "+this.getName()+": "+this.getDescription();
+		return out; 
+  } 
+  
+(2) From Member.java: 
+	public String formatMember(int i) 
+  { 
+      String out = "";
+		out = "("+i+")"+" "+this.getName()+": "+this.getEmail();
+		return out; 
+  } 
+(3) From Event.java: 
+  	public String formatEvents() 
+    { 
+        String out = "";
+		out = this.getEndDate()+" "+ this.getProjectname()+": "+ this.getName()+"- "+getMemberNames();
+		return out; 
+    }
+
+With these changes, functionality should be the same and the following tests should work. 
+
+-------------------------------------------------------- 'MOCKED TESTS' --------------------------------------------------------
+
+FOR TestProject.java:
+
+	// uses dummy object || check get/set (basically the only other functionalities we can test of Project) 	
+	@Test
+	void testProject() {
+		Project sp = spy(new Project("name","descr")); 
+		string expName = "name";
+		string expDescr = "descr";
+		assertEquals(expName,sm.getName());
+		assertEquals(expDescr,sm.getDescription());
+	}
+	
+	//can format member be changed to out = "("+i+")"+" "+this.getname()+": "+this.getemail(); ?? That way can mock both calls
+	@Test
+	void test_formatProject() {
+		Member sp = spy(new Project("name", "descr"));  // dont technically need parameters... maybe just have default constructor added to Project.java?  
+		int i = 1;
+		doReturn("name").when(sp).getName(); 
+		doReturn("descr").when(sp).getDescription();
+		assertEquals("(1) name: descr",sp.formatProject(i)); 
+	}
+	
+ FOR TestMember.java:
+ 
+		// Point of mock is to just use a dummy object || check the set and get
+	@Test
+	void testMember() {
+		Member sm = spy(new Member("bob","123@gmail.com")); 
+		string expName = "bob";
+		string expEmail = "123@gmail.com";
+		assertEquals(expName,sm.getName());
+		assertEquals(expEmail,sm.getEmail());
+	}
+	//can format member be changed to out = "("+i+")"+" "+this.getname()+": "+this.getemail(); ?? That way can mock both calls
+	//check the actual format functionality 
+	@Test
+	void test_formatMember() {
+		Member sm = spy(new Member("bob", "123@gmail.com")); 
+		int i = 1;
+		doReturn("bob").when(sm).getName(); 
+		doReturn("123@gmail.com").when(sm).getEmail();
+		assertEquals("(1) bob: 123@gmail.com",sm.formatMember(i)); 
+	}
+	
+ FOR TestEvent.java:
+ 
+	// Purpose is to make sure this method working properly, thus use mocking for get MemberNames
+	@Test
+	void testFormatEvents() {
+		Event se = spy(new Event("evname", "stdate", "endate", "descr", "projname")); 
+		doReturn("endate").when(se).getEndDate();
+		doReturn("projname").when(se).getProjectname();
+		doReturn("evname").when(se).getName();
+		doReturn("member names").when(se).getMemberNames();
+		assertEquals("endate projname: evname- membernames",se.getMemberNames()); 
+	}
+	
+
