@@ -106,4 +106,14 @@ FOR TestProject.java:
 		assertEquals("matt",se.getMemberNames());
 		
 	}
+	
+		// To use mocking, will have a Event with a single member, mock call on the get name, should format properly 
+	// with the 'complete' string from the actual function -- Daniel, you might need to change the st/end dates
+	@Test
+	void test_GetMemberName() {
+		Event se = spy(new Event("evname", "stdate", "endate", "descr", "projname"));
+		se.addMember(new Member("matt","abc@gmail.com"));
+		doReturn("matt").when(se).getName(); 
+		assertEquals("matt",se.getMemberNames()); 	
+	}
 
