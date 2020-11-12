@@ -116,4 +116,14 @@ FOR TestProject.java:
 		doReturn("matt").when(se).getName(); 
 		assertEquals("matt",se.getMemberNames()); 	
 	}
+	
+	@Test 
+	void Integrate_Member_With_Event() {
+		Member m1 = spy(new Member("matt","abc@gmail.com")); 
+		if (assertEquals("matt",m1.getName())){
+			Event se = spy(new Event("evname", "stdate", "endate", "descr", "projname"));
+			se.addMember(new Member("matt","abc@gmail.com"));
+			assertEquals("matt",se.getMemberNames()); 
+		}
+	}
 
