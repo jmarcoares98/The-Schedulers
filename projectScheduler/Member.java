@@ -13,6 +13,10 @@ public class Member {
 		setEmail(Iemail);
 	}
 	
+	public Member() {
+		
+	}
+	
 	public String getName() 
     { 
         return name; 

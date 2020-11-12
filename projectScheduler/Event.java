@@ -22,6 +22,11 @@ public class Event {
 		this.projectname = Iprojectname;
 	}
 	
+	public Event() {
+		
+	}
+	
+	
 	
 	public String getName() 
     { 

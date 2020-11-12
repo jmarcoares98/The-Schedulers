@@ -9,7 +9,7 @@ import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+import java.util.*;
  
 
 public class Testevent {
@@ -44,6 +44,18 @@ public class Testevent {
              expected = "bob, sue, mary";
              
              assertEquals(actual, expected);
+             
+             
+             
+             
+             Event se = spy(new Event("evname", "2020-10-30", "2020-10-31", "descr", "projname"));
+ 			 se.addMember(new Member("matt","abc@gmail.com"));
+ 			 doReturn("matt").when(se).getName(); 
+ 			 assertEquals("matt",se.getMemberNames()); 	
+             
+             
+             
+             
 
        }
 
@@ -51,37 +63,40 @@ public class Testevent {
 
 	    // Purpose is to make sure this method working properly, thus use mocking for get MemberNames
 	   	@Test
-	   	public void test_FormatEvents() {
-	   		Event se = spy(new Event("evname", "2020-10-30", "2020-10-31", "descr", "projname")); 
+	   	public void testFormatEvents() {
+	   		
+	   		String actual = spyEvent.formatEvents();
+
+            String expected = "2020-10-31 Holidays: Party- ";
+
+            assertEquals(actual, expected);
+	   		
+	   		
+	   		Event se = spy(new Event());
+	   		//Event se = mock(Event.class);
 	   		doReturn(LocalDate.parse("2020-10-31")).when(se).getEndDate();
 	   		doReturn("projname").when(se).getProjectname();
 	   		doReturn("evname").when(se).getName();
 	   		doReturn("membernames").when(se).getMemberNames();
-	   		assertEquals("2020-10-31 projname: evname- membernames",se.formatEvents()); 
+	   		assertEquals("2020-10-31 projname: evname- membernames",se.formatEvents());
+	   		
+	   		
+	   		
 	   	}
        
        
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       @Test
-
-       public void testFormatEvents() {
-
-             String actual = spyEvent.formatEvents();
-
-             String expected = "2020-10-31 Holidays: Party- ";
-
-             assertEquals(actual, expected);
-
-       }
+	   	
+	   	@Test 
+		public void Integrate_Member_With_Event() {
+			Member m1 = spy(new Member("matt","abc@gmail.com")); 
+			if ("matt"==m1.getName()){
+				Event se = spy(new Event("evname", "2020-10-30", "2020-10-31", "descr", "projname"));
+				se.addMember(new Member("matt","abc@gmail.com"));
+				assertEquals("matt",se.getMemberNames()); 
+			}
+		}
+		
+  
 
  
        @Test

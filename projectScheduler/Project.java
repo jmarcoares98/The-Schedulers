@@ -15,6 +15,10 @@ public class Project {
 		this.description = Idescription;
 	}
 	
+	public Project() {
+		
+	}
+	
 	
 	public String getName() 
     { 
