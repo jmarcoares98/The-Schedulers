@@ -94,6 +94,9 @@ public class Testevent {
 				se.addMember(new Member("matt","abc@gmail.com"));
 				assertEquals("matt",se.getMemberNames()); 
 			}
+			else {
+				assertEquals(1,2);
+			}
 		}
 		
   

@@ -11,10 +11,12 @@ public class Testmain {
 	ArrayList<Project> spyPL = spy(new ArrayList<Project>());
 	ArrayList<Event> spySL= new ArrayList<Event>();
 	Main x = new Main();
-	/*
 	
-	*/
 	
+	
+	
+	
+	//We don't know how to mock in order for Arraylist sort to work properly so this unit test does not use mocking
 	@Test
 	public void testorderEvents() {
 		//adds new project with 2 members
