@@ -1,0 +1,45 @@
+For Project,Member unsure what else to add
+
+#Member - Due to the nature of the member class, unit testing and integration is sufficient.
+
+#Project - 
+
+#In EVENT 
+Cases to test all paths of Get Member Names 
+# Not sure what naming conventions etc to follow but idea is testing the if/else
+#i.e a list with just one entry for the 'if' and then one with multiple for the 'else' 
+
+
+// Input for 'if' spy ev1
+// Input that will use the 'else' spy ev2 
+// Coverage for entire 'getMemberNames function 
+
+@Test 
+void Test_getMemberName_paths(){
+    Event ev1 = spy(new Event("evname", "10/20/2020", "10/22/2020", "descr", "projname"));
+    ev1.addMember(new Member("matt","abc@gmail.com")); 
+    Event ev2 = spy(new Event("evname", "10/20/2020", "10/22/2020", "descr", "projname"));
+    ev2.addMember(new Member("matt","abc@gmail.com"));
+    ev2.addMember(new Member("mark","mark@gmail.com"));
+
+    assertEquals("matt",ev1.getMemberNames());
+    assertEquals("matt, mark", ev2.getMemberNames()); 
+
+}
+
+
+// Do we bother testing something like format event? The parameters? 
+
+
+// For main might have to start stubbing the function apart, cut out the loop and run tests
+with hard coded parameters
+
+// What to do to handle all the voids? Stub to where asserts can happen? Need to ensure coverage
+somehow 
+
+
+
+
+
+
+
