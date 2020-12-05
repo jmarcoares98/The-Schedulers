@@ -1,0 +1,9 @@
+----------Blackbox TestMember-----------
+@test
+public void testBlackboxEmail() {
+		Member sm = spy(new Member()); 
+		int i = 1;
+		doReturn("bob").when(sm).getName(); 
+		doReturn("123.email.com").when(sm).getEmail();
+		assertEquals("(1) bob: 123.email.com",sm.formatMember(i)); 
+}
