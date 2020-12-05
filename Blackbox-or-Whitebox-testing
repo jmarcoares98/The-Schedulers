@@ -7,3 +7,21 @@ public void testBlackboxEmail() {
 		doReturn("123.email.com").when(sm).getEmail();
 		assertEquals("(1) bob: 123.email.com",sm.formatMember(i)); 
 }
+
+----------Blackbox TestMain----------
+@test
+public void testBlackboxStartAndEndDates() {
+		spyPL.add(new Project("Pname2", "Pdesc2"));	
+		//add event
+		spyPL.get(1).Events.add(new Event("Ename3", "2020-12-05", "2020-12-01","Edesc3",spyPL.get(1).getName()));
+		
+		spySL = x.orderEvents(spyPL);
+		
+		actual =  spySL.get(0).getStartDate();
+		expected = LocalDate.parse("2020-12-05");
+		assertEquals(actual, expected);
+		
+		actual =  spySL.get(1).getEndDate();
+		expected = LocalDate.parse("2020-12-01");
+		assertEquals(actual, expected);
+}
