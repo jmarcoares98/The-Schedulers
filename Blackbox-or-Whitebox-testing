@@ -1,4 +1,5 @@
 ----------Blackbox TestMember-----------
+//testing the email format
 @test
 public void testBlackboxEmail() {
 		Member sm = spy(new Member()); 
@@ -9,6 +10,7 @@ public void testBlackboxEmail() {
 }
 
 ----------Blackbox TestMain----------
+//testing if the start date is beyond the end date
 @test
 public void testBlackboxStartAndEndDates() {
 		spyPL.add(new Project("Pname2", "Pdesc2"));	
