@@ -9,6 +9,34 @@ public void testBlackboxEmail() {
 		assertEquals("(1) bob: 123.email.com",sm.formatMember(i)); 
 }
 
+----------Blackbox TestEvent----------
+
+// false date
+@test
+public void testBlackboxEvent() {
+  		
+	Event se = spy(new Event());
+	doReturn(LocalDate.parse("2020-02-31")).when(se).getEndDate();
+	doReturn("projname").when(se).getProjectname();
+	doReturn("evname").when(se).getName();
+	doReturn("membernames").when(se).getMemberNames();
+	assertEquals("2020-10-31 projname: evname- membernames",se.formatEvents());
+
+}
+
+// incorrect date format
+@test
+public void testBlackboxEvent2() {   		
+	   		
+	Event se = spy(new Event());
+	doReturn(LocalDate.parse("2020/02/31")).when(se).getEndDate();
+	doReturn("projname").when(se).getProjectname();
+	doReturn("evname").when(se).getName();
+	doReturn("membernames").when(se).getMemberNames();
+	assertEquals("2020-10-31 projname: evname- membernames",se.formatEvents());
+
+}
+
 ----------Blackbox TestMain----------
 //testing if the start date is beyond the end date
 @test
