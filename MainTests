@@ -1,0 +1,10 @@
+addProject() - inp3 has to be formatted correct (name-email) or (name1-email1/name2-email2/etc-etc)
+
+removeProject() - if inp1 is not an integer or is an integer that is greater than or less than the project list size, the program crashes.
+
+
+addEvent() - if inp1 is not an integer or is an integer that is greater than or less than the project list size, the program crashes.
+- if inp4 and inp5 is formatted incorrectly or if the String converted to a LocalDate is not a real date, the program crashes.
+- if inp6 is not an integer or is an integer that is greater than or less than the project list size, the program crashes.
+- if inp6 is formatted incorrectly (not in num/num/etc format), the program crashes.
+- inp6 can add the same member multiple times if formatted incorrectly (EX:1/1/2/1).
