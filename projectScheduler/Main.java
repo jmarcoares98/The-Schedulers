@@ -118,6 +118,30 @@ public class Main {
 		return PL;
 	}
 	
+	public static ArrayList<Project> removeProject(ArrayList<Project> PL, String inp1) {
+		int i;
+		i = Integer.parseInt(inp1);
+		PL.remove(i-1);
+		return PL;
+	}
+	
+	public static ArrayList<Project> addEvent(ArrayList<Project> PL, String inp1,String inp2,String inp3,String inp4,String inp5,String inp6) {
+		int i;
+		int j;
+		String[] strL;
+		
+		i = Integer.parseInt(inp1);
+		strL = inp6.split("/");
+		
+		PL.get(i-1).Events.add(new Event(inp2,inp4,inp5,inp3,PL.get(i-1).getName()));
+		
+		for (String m : strL) {
+			j = Integer.parseInt(m);
+			PL.get(i-1).Events.get(PL.get(i-1).Events.size() - 1).addMember(PL.get(i-1).members.get(j-1));
+		}
+		return PL;
+	}
+	
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		int go = 1;
@@ -174,8 +198,9 @@ public class Main {
 				printProjects(projectL);
 				System.out.println("What is the number of the project to be removed?:");
 				inp1 = scan.nextLine();
-				i = Integer.parseInt(inp1);
-				projectL.remove(i-1);	
+				
+				projectL=removeProject(projectL,inp1);
+					
 				printProjects(projectL);
 				break;
 			case "3"://View Event
@@ -207,7 +232,7 @@ public class Main {
 					printProjects(projectL);
 					System.out.println("What project would you like to add the event to?");
 					inp1 = scan.nextLine();
-					i = Integer.parseInt(inp1);
+					
 					System.out.println("What is the name of the event?");
 					inp2 = scan.nextLine();
 					System.out.println("Give a one-line description of your Event:");
@@ -219,17 +244,12 @@ public class Main {
 					inp5 = scan.nextLine();
 					//date2 = LocalDate.parse(inp5);
 					
+					i = Integer.parseInt(inp1);
 					printProjMem(projectL.get(i-1));
 					System.out.println("Who is working on this event?(membernumber/membernumber):");
 					inp6 = scan.nextLine();
-					strL = inp6.split("/");
 					
-					projectL.get(i-1).Events.add(new Event(inp2,inp4,inp5,inp3,projectL.get(i-1).getName()));
-					
-					for (String m : strL) {
-						j = Integer.parseInt(m);
-						projectL.get(i-1).Events.get(projectL.get(i-1).Events.size() - 1).addMember(projectL.get(i-1).members.get(j-1));
-					}
+					projectL=addEvent(projectL,inp1,inp2,inp3,inp4,inp5,inp6);
 					
 					
 					
