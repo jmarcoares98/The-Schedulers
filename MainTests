@@ -2,25 +2,7 @@ addProject() - inp3 has to be formatted correct (name-email) or (name1-email1/na
 
 removeProject() - if inp1 is not an integer or is an integer that is greater than or less than the project list size, the program crashes.
 
-	public static ArrayList<Project> removeProject(ArrayList<Project> PL, String inp1) {
-		int i;
-		i = Integer.parseInt(inp1);
-		PL.remove(i-1);
-		return PL;
-	}
 
-  @Test 
-  public void test_rmProject(){
-    String works = "1";
-    String improperFormat = "one"; 
-    Main x = new Main();
-    ArrayList<Project> spyList = spy(new ArrayList<Project>());
-    spyList.add(new Project ("projName", "projDescr"); 
-    ArrayList<Project> compareList = new ArrayList<Project>(); 
-    assertEqual(compareList, x.removeProject(spyList,works)); 
-    assertFalse(compareList,x.removeProject(spyList,improperFormat)); 
-    
-  }
 
 addEvent() - if inp1 is not an integer or is an integer that is greater than or less than the project list size, the program crashes.
 - if inp4 and inp5 is formatted incorrectly or if the String converted to a LocalDate is not a real date, the program crashes.
