@@ -1,0 +1,49 @@
+In the main this is how planning to test the void functions... 
+
+New functions as String: 
+
+	public static String printProjects(ArrayList<Project> PL) {//Prints all projects with numbers in front
+		String retString = ""; 
+		int i = 1;
+		//System.out.println("~~~~~~~~~~~~~~~~~~~~~Your Projects~~~~~~~~~~~~~~~~~~~~~");
+		for (Project p : PL){
+			retString += p.formatProject(i);
+			i++;
+		}
+		//System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		return retString; 
+	}
+
+	
+	// Full coverage of the function is ensured 
+	@Test 
+
+	void test_printProjects(){
+		Main main = new Main(); // is this how to use the main class? 
+		ArrayList<Project> spyPL = spy(new ArrayList<Project>());
+		spyPL.add(new Project("name1","descr1")); 
+		assertEqual("(1) name1: descr1", main.printProjects(spyPL));
+	}
+
+
+	public static String printProjMem(Project P) {//Prints the members of a project with numbers in front
+		int i = 1;
+		String retString = "";
+		//System.out.println("~~~~~~~~~~~~~~~~~~~~Project Members~~~~~~~~~~~~~~~~~~~~");
+		for (Member m : P.members){
+			retString += m.formatMember(i);
+			i++;
+		}
+		//System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		return retString; 
+	}
+
+
+	@Test
+	
+	void test_printProjMem(){
+		Main main = new Main();
+		Project spyProj = spy(new Project("spyProj","spyDescr"));
+		spyProj.addMember(new Member("matt","matt@gmail.com)); 
+		assertEqual("(1) Matt: matt@gmail.com", main.printProjMem(spyProj));
+	}	

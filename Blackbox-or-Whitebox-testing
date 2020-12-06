@@ -55,3 +55,38 @@ public void testBlackboxStartAndEndDates() {
 		expected = LocalDate.parse("2020-12-01");
 		assertEquals(actual, expected);
 }
+
+-------Main------------
+//blackbox
+@test
+public void testAddproject{
+	Main m = new Main();
+	ArrayList<Project> spyPL = spy(new ArrayList<Project>());
+	spyPL.add(new Project("Pname", "Pdesc"));
+	
+	actual = m.addProject(spyPL, "str1", "str2", "str3");
+	expected = spyPL.add(new Project("str1", "str2");
+	assertEquals(actual,expected);
+	
+}
+
+
+	public static ArrayList<Project> removeProject(ArrayList<Project> PL, String inp1) {
+		int i;
+		i = Integer.parseInt(inp1);
+		PL.remove(i-1);
+		return PL;
+	}
+
+  @Test 
+  public void test_rmProject(){
+    String works = "1";
+    String improperFormat = "one"; 
+    Main x = new Main();
+    ArrayList<Project> spyList = spy(new ArrayList<Project>());
+    spyList.add(new Project ("projName", "projDescr"); 
+    ArrayList<Project> compareList = new ArrayList<Project>(); 
+    assertEqual(compareList, x.removeProject(spyList,works)); 
+    assertFalse(compareList,x.removeProject(spyList,improperFormat)); 
+    
+  }
