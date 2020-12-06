@@ -55,3 +55,16 @@ public void testBlackboxStartAndEndDates() {
 		expected = LocalDate.parse("2020-12-01");
 		assertEquals(actual, expected);
 }
+
+//blackbox
+@test
+public void testAddproject{
+	Main m = new Main();
+	ArrayList<Project> spyPL = spy(new ArrayList<Project>());
+	spyPL.add(new Project("Pname", "Pdesc"));
+	
+	actual = m.addProject(spyPL, "str1", "str2", "str3");
+	expected = spyPL.add(new Project("str1", "str2");
+	assertEquals(actual,expected);
+	
+}
