@@ -76,8 +76,33 @@ public class Testmain {
 		assertEquals(actual, expected);
 		
 		
-		
-		
 	}
 
+	//blackbox
+	//Tests inp3 has to be formatted correct (name-email) or (name1-email1/name2-email2/etc-etc)
+	@Test
+	public void testAddproject(){
+		Main m = new Main();
+		ArrayList<Project> spyPL = spy(new ArrayList<Project>());
+		spyPL.add(new Project("Pname", "Pdesc"));
+		
+		
+		spyPL=m.addProject(spyPL, "Pname", "Pdesc", "name email");
+		String actual = (spyPL).get(0).getMembers().get(0).getName();
+		String expected = "name"; 
+		assertEquals(actual,expected);
+		
+	}
+	@Test
+	public void testAddprojectCorrect(){
+		Main m = new Main();
+		ArrayList<Project> spyPL = spy(new ArrayList<Project>());
+		
+		spyPL=m.addProject(spyPL, "Pname", "Pdesc", "name-email");
+		String actual = (spyPL).get(0).getMembers().get(0).getName();
+		String expected = "name"; 
+		assertEquals(actual,expected);
+		
+	}
+	
 }

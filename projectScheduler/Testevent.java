@@ -81,12 +81,48 @@ public class Testevent {
 	   		
 	   		
 	   	}
-       
-       
+        
+	   	
+	   	//BB
+	   	// false date
+	   	@Test
+	   	public void testBlackboxEvent() {
+	   	  		
+	   		Event se = spy(new Event());
+	   		doReturn(LocalDate.parse("2020-02-31")).when(se).getEndDate();
+	   		doReturn("projname").when(se).getProjectname();
+	   		doReturn("evname").when(se).getName();
+	   		doReturn("membernames").when(se).getMemberNames();
+	   		assertEquals("2020-10-31 projname: evname- membernames",se.formatEvents());
+
+	   	}
 	   	
 	   	
        
-       
-       
+	   	// incorrect date format
+	   	@Test
+	   	public void testBlackboxEvent2() {   		
+	   		   		
+	   		Event se = spy(new Event());
+	   		doReturn(LocalDate.parse("2020/10/29")).when(se).getEndDate();
+	   		doReturn("projname").when(se).getProjectname();
+	   		doReturn("evname").when(se).getName();
+	   		doReturn("membernames").when(se).getMemberNames();
+	   		assertEquals("2020-10-29 projname: evname- membernames",se.formatEvents());
+
+	   	}
+	   	@Test
+	   	public void testBlackboxEvent2Correct() {   		
+	   		   		
+	   		Event se = spy(new Event());
+	   		doReturn(LocalDate.parse("2020-10-29")).when(se).getEndDate();
+	   		doReturn("projname").when(se).getProjectname();
+	   		doReturn("evname").when(se).getName();
+	   		doReturn("membernames").when(se).getMemberNames();
+	   		assertEquals("2020-10-29 projname: evname- membernames",se.formatEvents());
+
+	   	}
+	   	
+	   	
        
 }
