@@ -20,6 +20,12 @@ public class Testmember {
 		String expEmail = "123@gmail.com";
 		assertEquals(expName,sm.getName());
 		assertEquals(expEmail,sm.getEmail());
+		
+		//BB
+		int i = 1;
+		doReturn("bob").when(sm).getName(); 
+		doReturn("123.email.com").when(sm).getEmail();
+		assertEquals("(1) bob: 123.email.com",sm.formatMember(i));
 	}
 	
 	
@@ -44,4 +50,5 @@ public class Testmember {
 		
 	}
 
+	
 }

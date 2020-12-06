@@ -59,6 +59,25 @@ public class Testmain {
 		actual =  spySL.get(2).getEndDate();
 		expected = LocalDate.parse("2020-11-07");
 		assertEquals(actual, expected);
+		
+		//BB
+		spyPL.add(new Project("Pname3", "Pdesc3"));	
+		//add event
+		spyPL.get(2).Events.add(new Event("Ename4", "2020-12-05", "2020-12-01","Edesc4",spyPL.get(1).getName()));
+		
+		spySL = x.orderEvents(spyPL);
+		
+		actual =  spySL.get(3).getStartDate();
+		expected = LocalDate.parse("2020-12-05");
+		assertEquals(actual, expected);
+		
+		actual =  spySL.get(3).getEndDate();
+		expected = LocalDate.parse("2020-12-01");
+		assertEquals(actual, expected);
+		
+		
+		
+		
 	}
 
 }

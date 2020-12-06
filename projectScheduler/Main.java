@@ -103,9 +103,20 @@ public class Main {
 	}
 	
 	
+	//---------------added for testing------------------------
+	public static ArrayList<Project> addProject(ArrayList<Project> PL, String inp1, String inp2, String inp3) {
+		String[] strL;
+		String[] strL2;
+		
+		strL = inp3.split("/");
+		PL.add(new Project(inp1, inp2));
+		for(String s : strL) {
+			strL2 = s.split("-");
+			PL.get(PL.size() - 1).addMember(new Member(strL2[0],strL2[1]));
+		}
 	
-	
-	
+		return PL;
+	}
 	
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
@@ -153,12 +164,8 @@ public class Main {
 				inp2 = scan.nextLine();
 				System.out.println("Who will be working on this Project? (nameofmember1-email/nameofmember2-email/nameofmember3-email):");
 				inp3 = scan.nextLine();
-				strL = inp3.split("/");
-				projectL.add(new Project(inp1, inp2));
-				for(String s : strL) {
-					strL2 = s.split("-");
-					projectL.get(projectL.size() - 1).addMember(new Member(strL2[0],strL2[1]));
-				}
+				
+				projectL=addProject(projectL,inp1,inp2,inp3);
 				
 				printProjects(projectL);
 				
