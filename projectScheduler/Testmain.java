@@ -78,7 +78,7 @@ public class Testmain {
 		
 	}
 
-	//blackbox
+	//BlackBox
 	//Tests inp3 has to be formatted correct (name-email) or (name1-email1/name2-email2/etc-etc)
 	@Test
 	public void testAddproject(){
@@ -138,5 +138,192 @@ public class Testmain {
 	    assertEquals("projName3", spyList2.get(0).getName());
 	    
 	  }
+	//if inp1 is not an integer or is an integer that is greater than or less than the project list size, the program crashes.
+	@Test 
+	  public void testAddEvent1_1(){//Works
+		//Setup
+		Main m = new Main();
+		ArrayList<Project> spyPL = spy(new ArrayList<Project>());
+		String[] strL;
+		String[] strL2;
+		
+		strL = "name1-email1/name2-email2".split("/");
+		spyPL.add(new Project ("projName1", "projDescr1")); 
+		for(String s : strL) {
+			strL2 = s.split("-");
+			spyPL.get(spyPL.size() - 1).addMember(new Member(strL2[0],strL2[1]));
+		}
+		//Test
+		
+		spyPL=m.addEvent(spyPL, "1","Eventname","Eventdesc","2020-12-13","2020-12-14","1/2");
+		assertEquals("Eventname", spyPL.get(0).Events.get(0).getName());//works
+	}
+	@Test 
+	  public void testAddEvent1_2(){//if inp1 is not an integer
+		//Setup
+		Main m = new Main();
+		ArrayList<Project> spyPL = spy(new ArrayList<Project>());
+		String[] strL;
+		String[] strL2;
+		
+		strL = "name1-email1/name2-email2".split("/");
+		spyPL.add(new Project ("projName1", "projDescr1")); 
+		for(String s : strL) {
+			strL2 = s.split("-");
+			spyPL.get(spyPL.size() - 1).addMember(new Member(strL2[0],strL2[1]));
+		}
+		//Test
+		
+		spyPL=m.addEvent(spyPL, "one","Eventname","Eventdesc","2020-12-13","2020-12-14","1/2");
+		assertEquals("Eventname", spyPL.get(0).Events.get(0).getName());//fails
+	}
+	@Test 
+	  public void testAddEvent1_3(){//is an integer that is greater than or less than the project list size
+		//Setup
+		Main m = new Main();
+		ArrayList<Project> spyPL = spy(new ArrayList<Project>());
+		String[] strL;
+		String[] strL2;
+		
+		strL = "name1-email1/name2-email2".split("/");
+		spyPL.add(new Project ("projName1", "projDescr1")); 
+		for(String s : strL) {
+			strL2 = s.split("-");
+			spyPL.get(spyPL.size() - 1).addMember(new Member(strL2[0],strL2[1]));
+		}
+		//Test
+		
+		spyPL=m.addEvent(spyPL, "2","Eventname","Eventdesc","2020-12-13","2020-12-14","1/2");
+		assertEquals("Eventname", spyPL.get(0).Events.get(0).getName());//fails
+	}
 	
+	//if inp4 and inp5 is formatted incorrectly or if the String converted to a LocalDate is not a real date, the program crashes.
+	@Test 
+	  public void testAddEvent2_1(){//if inp4 or inp5 is formatted incorrectly
+		//Setup
+		Main m = new Main();
+		ArrayList<Project> spyPL = spy(new ArrayList<Project>());
+		String[] strL;
+		String[] strL2;
+		
+		strL = "name1-email1/name2-email2".split("/");
+		spyPL.add(new Project ("projName1", "projDescr1")); 
+		for(String s : strL) {
+			strL2 = s.split("-");
+			spyPL.get(spyPL.size() - 1).addMember(new Member(strL2[0],strL2[1]));
+		}
+		//Test
+		
+		spyPL=m.addEvent(spyPL, "1","Eventname","Eventdesc","2020/12/13","2020-12-14","1/2");
+		assertEquals("Eventname", spyPL.get(0).Events.get(0).getName());//fails
+	}
+	
+	@Test 
+	  public void testAddEvent2_2(){//if the String converted to a LocalDate is not a real date
+		//Setup
+		Main m = new Main();
+		ArrayList<Project> spyPL = spy(new ArrayList<Project>());
+		String[] strL;
+		String[] strL2;
+		
+		strL = "name1-email1/name2-email2".split("/");
+		spyPL.add(new Project ("projName1", "projDescr1")); 
+		for(String s : strL) {
+			strL2 = s.split("-");
+			spyPL.get(spyPL.size() - 1).addMember(new Member(strL2[0],strL2[1]));
+		}
+		//Test
+		
+		spyPL=m.addEvent(spyPL, "1","Eventname","Eventdesc","2020-12-13","2021-02-31","1/2");
+		assertEquals("Eventname", spyPL.get(0).Events.get(0).getName());//fails
+	}
+	
+	//if inp6 is not an integer or is an integer that is greater than or less than the project list size, the program crashes.
+	@Test 
+	  public void testAddEvent3_1(){//if inp6 is not an integer
+		//Setup
+		Main m = new Main();
+		ArrayList<Project> spyPL = spy(new ArrayList<Project>());
+		String[] strL;
+		String[] strL2;
+		
+		strL = "name1-email1/name2-email2".split("/");
+		spyPL.add(new Project ("projName1", "projDescr1")); 
+		for(String s : strL) {
+			strL2 = s.split("-");
+			spyPL.get(spyPL.size() - 1).addMember(new Member(strL2[0],strL2[1]));
+		}
+		//Test
+		
+		spyPL=m.addEvent(spyPL, "1","Eventname","Eventdesc","2020-12-13","2020-12-14","one/two");
+		assertEquals("Eventname", spyPL.get(0).Events.get(0).getName());//fails
+	}
+	
+		@Test 
+		  public void testAddEvent3_2(){//is an integer that is greater than or less than the project list size
+			//Setup
+			Main m = new Main();
+			ArrayList<Project> spyPL = spy(new ArrayList<Project>());
+			String[] strL;
+			String[] strL2;
+			
+			strL = "name1-email1/name2-email2".split("/");
+			spyPL.add(new Project ("projName1", "projDescr1")); 
+			for(String s : strL) {
+				strL2 = s.split("-");
+				spyPL.get(spyPL.size() - 1).addMember(new Member(strL2[0],strL2[1]));
+			}
+			//Test
+			
+			spyPL=m.addEvent(spyPL, "1","Eventname","Eventdesc","2020-12-13","2020-12-14","1/3");
+			assertEquals("Eventname", spyPL.get(0).Events.get(0).getName());//fails
+		}
+	
+		//if inp6 is formatted incorrectly (not in num/num/etc format), the program crashes.
+		@Test 
+		  public void testAddEvent4_1(){
+			//Setup
+			Main m = new Main();
+			ArrayList<Project> spyPL = spy(new ArrayList<Project>());
+			String[] strL;
+			String[] strL2;
+			
+			strL = "name1-email1/name2-email2".split("/");
+			spyPL.add(new Project ("projName1", "projDescr1")); 
+			for(String s : strL) {
+				strL2 = s.split("-");
+				spyPL.get(spyPL.size() - 1).addMember(new Member(strL2[0],strL2[1]));
+			}
+			//Test
+			
+			spyPL=m.addEvent(spyPL, "1","Eventname","Eventdesc","2020-12-13","2020-12-14","1-2");
+			assertEquals("Eventname", spyPL.get(0).Events.get(0).getName());//fails
+		}
+		
+		//inp6 can add the same member multiple times if formatted incorrectly (EX:1/1/2/1).
+				@Test 
+				  public void testAddEvent5_1(){
+					//Setup
+					Main m = new Main();
+					ArrayList<Project> spyPL = spy(new ArrayList<Project>());
+					String[] strL;
+					String[] strL2;
+					
+					strL = "name1-email1/name2-email2".split("/");
+					spyPL.add(new Project ("projName1", "projDescr1")); 
+					for(String s : strL) {
+						strL2 = s.split("-");
+						spyPL.get(spyPL.size() - 1).addMember(new Member(strL2[0],strL2[1]));
+					}
+					//Test
+					
+					spyPL=m.addEvent(spyPL, "1","Eventname","Eventdesc","2020-12-13","2020-12-14","1/1/2/1");
+					assertEquals("Eventname", spyPL.get(0).Events.get(0).getName());//works but shouldn't
+				}
+				
+		
+		
+		
+		
+		
 }
