@@ -104,5 +104,39 @@ public class Testmain {
 		assertEquals(actual,expected);
 		
 	}
+
+	//if inp1 is not an integer or is an integer that is greater than or less than the project list size, the program crashes.
+	@Test 
+	  public void test_rmProject(){
+	    String works = "1";
+	    String improperFormat = "one"; 
+	    Main x = new Main();
+	    ArrayList<Project> spyList = spy(new ArrayList<Project>());
+	    spyList.add(new Project ("projName1", "projDescr1")); 
+	    spyList.add(new Project ("projName2", "projDescr2"));
+	    ArrayList<Project> compareList = new ArrayList<Project>();
+	    spyList=x.removeProject(spyList,works);
+	    assertEquals("projName2", spyList.get(0).getName()); 
+	    spyList.add(new Project ("projName3", "projDescr3"));
+	    spyList=x.removeProject(spyList,improperFormat);
+	    assertEquals("projName3", spyList.get(0).getName());
+	    
+	  }
+	@Test 
+	  public void test_rmProject2(){
+	    String works = "1";
+	    String improperValue = "3"; 
+	    Main r = new Main();
+	    ArrayList<Project> spyList2 = spy(new ArrayList<Project>());
+	    spyList2.add(new Project ("projName1", "projDescr1")); 
+	    spyList2.add(new Project ("projName2", "projDescr2"));
+	    ArrayList<Project> compareList = new ArrayList<Project>();
+	    spyList2=r.removeProject(spyList2,works);
+	    assertEquals("projName2", spyList2.get(0).getName()); 
+	    spyList2.add(new Project ("projName3", "projDescr3"));
+	    spyList2=r.removeProject(spyList2,improperValue);
+	    assertEquals("projName3", spyList2.get(0).getName());
+	    
+	  }
 	
 }
